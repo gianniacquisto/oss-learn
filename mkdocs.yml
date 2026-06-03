@@ -1,0 +1,48 @@
+site_name: oss-learn
+site_description: Curated courses that teach you how real-world OSS projects are built — by rebuilding them yourself, step by step.
+site_url: https://earendil-works.github.io/oss-learn
+
+repo_url: https://github.com/earendil-works/oss-learn
+repo_name: earendil-works/oss-learn
+
+docs_dir: courses
+
+theme:
+  name: material
+  palette:
+    primary: deep-purple
+    accent: indigo
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - Courses:
+      - pi-mvp: pi-mvp/index.md
+        - Project Setup: pi-mvp/milestones/01-project-setup/context.md
+        - Message Types & State: pi-mvp/milestones/02-message-types-and-state/context.md
+        - Core Agent Loop: pi-mvp/milestones/03-core-agent-loop/context.md
+        - Tool Execution System: pi-mvp/milestones/04-tool-execution-system/context.md
+        - LLM Integration: pi-mvp/milestones/05-llm-integration/context.md
+  - Contributing: CONTRIBUTING.md
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - search

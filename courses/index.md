@@ -1,7 +1,5 @@
 # oss-learn
 
-[![Deployed on GitHub Pages](https://img.shields.io/badge/deployed-GitHub_Pages-blue?logo=github)](https://earendil-works.github.io/oss-learn)
-
 Curated courses that teach you how real-world OSS projects are built — by rebuilding them yourself, step by step.
 
 Each course takes a real project (like [pi.dev](https://github.com/earendil-works/pi)), distills it down to its core concepts, and guides you through building your own version from scratch. You'll learn architecture decisions, trade-offs, and patterns — not just copy-paste tutorials.
@@ -17,7 +15,7 @@ Each course takes a real project (like [pi.dev](https://github.com/earendil-work
 
 | Course | Difficulty | Time | What You'll Build |
 |---|---|---|---|
-| [pi-mvp](./courses/pi-mvp/) | Intermediate | ~8-12 hours | A minimal agent harness — the core of pi.dev, stripped to essentials |
+| [pi-mvp](./pi-mvp/README.md) | Intermediate | ~8-12 hours | A minimal agent harness — the core of pi.dev, stripped to essentials |
 
 ## Philosophy
 

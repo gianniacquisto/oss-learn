@@ -1,0 +1,40 @@
+# .github/workflows/deploy-docs.yml
+name: Deploy Documentation Site (MkDocs)
+
+on:
+  push:
+    branches: [ main ] # Triggers the build whenever you commit to 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout your repository code
+      - uses: actions/checkout@v4
+
+      # 2. Set up Python and install UV (the modern standard for CI)
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Use venv and uv for dependencies
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      # 3. Create a virtual environment in the runner (mimicking your local .venv)
+      - name: Set up Python environment
+        run: uv venv .venv
+      - name: Activate and install dependencies
+        run: |
+          source .venv/bin/activate
+          uv pip install mkdocs mkdocs-material
+
+      # 4. Build the static site (MD -> HTML)
+      - name: Run MkDocs build
+        run: |
+          source .venv/bin/activate
+          mkdocs build --config-file mkdocs.yml
+
+      # 5. Deploy to GitHub Pages
+      - name: Upload documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site # Deploys the generated HTML folder

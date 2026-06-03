@@ -1,0 +1,17 @@
+# Python / uv virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# MkDocs build output
+site/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
