@@ -26,4 +26,4 @@ Each course takes a real project (like [pi.dev](https://github.com/earendil-work
 
 ## Contributing a Course
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for the methodology and structure guidelines.
+See [CONTRIBUTING.md](https://github.com/earendil-works/oss-learn/blob/main/CONTRIBUTING.md) for the methodology and structure guidelines.

@@ -25,13 +25,17 @@ theme:
 nav:
   - Home: index.md
   - Courses:
-      - pi-mvp: pi-mvp/index.md
+      - pi-mvp/README.md
+      - Milestones:
         - Project Setup: pi-mvp/milestones/01-project-setup/context.md
         - Message Types & State: pi-mvp/milestones/02-message-types-and-state/context.md
         - Core Agent Loop: pi-mvp/milestones/03-core-agent-loop/context.md
         - Tool Execution System: pi-mvp/milestones/04-tool-execution-system/context.md
         - LLM Integration: pi-mvp/milestones/05-llm-integration/context.md
-  - Contributing: CONTRIBUTING.md
+      - Glossary: pi-mvp/glossary.md
+      - Key Concepts: pi-mvp/key-concepts.md
+      - Reading List: pi-mvp/reading-list.md
+  - Contributing: https://github.com/earendil-works/oss-learn/blob/main/CONTRIBUTING.md
 
 markdown_extensions:
   - attr_list
