@@ -5,8 +5,8 @@ site_author: Gianni Acquistò
 
 copyright: Built with <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>
 
-repo_url: https://github.com/earendil-works/oss-learn
-repo_name: earendil-works/oss-learn
+repo_url: https://github.com/gianniacquisto/oss-learn
+repo_name: gianniacquisto/oss-learn
 edit_uri: edit/main/courses/
 
 docs_dir: courses
