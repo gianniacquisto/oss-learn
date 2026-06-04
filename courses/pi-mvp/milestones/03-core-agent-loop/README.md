@@ -1,19 +1,17 @@
-# Milestone 3: Core Agent Loop
+---
+comments: Milestone 3 of 5
+---
+
+# :fontawesome-solid-circle-3: Core Agent Loop
 
 ## What You'll Build
 
-The heart of your agent harness: a function that runs the core loop — send messages to an LLM, receive a response, detect if it contains tool calls, and loop until completion. At this stage, responses will be non-streaming text-only (no tools yet), but the loop structure is in place so you can extend it in Milestone 4.
+The main agent loop: prompt the LLM, get a response, detect if it needs tools, and repeat. This is where your agent comes alive.
 
 ## Why This Matters
 
-The agent loop is where all the pieces come together. It's a deceptively complex piece of code because it has to handle:
-- **State transitions:** idle → processing → idle, with error handling at each step
-- **Control flow:** when to stop looping (no tool calls? shouldStopAfterTurn?)
-- **Error recovery:** what happens when the LLM returns an error vs. a normal response
+This is the fundamental pattern behind every agentic system. Understanding this loop means understanding how AI agents actually work at runtime.
 
-In pi.dev, this loop is split into two functions: `runAgentLoop` (for new prompts) and `runAgentLoopContinue` (for continuing from existing context). You'll build both patterns.
+---
 
-## Prerequisites for This Milestone
-
-- Complete Milestones 1–2
-- Understand how the OpenAI or Anthropic chat completion API works (request shape, response shape)
+[:material-arrow-left: Back to Course](../../README.md){: .md-button }&nbsp;&nbsp;[:material-book-open-variant: Read Context](context.md){: .md-button }&nbsp;&nbsp;[:material-check-circle: Start Building →](steps.md){: .md-button .md-button--primary }&nbsp;&nbsp;[:material-flag: Done Checklist](done.md){: .md-button }

@@ -1,14 +1,17 @@
-# Milestone 2: Message Types & Agent State
+---
+comments: Milestone 2 of 5
+---
+
+# :fontawesome-solid-circle-2: Message Types & Agent State
 
 ## What You'll Build
 
-A type-safe message system and an `Agent` class that manages conversation context. The agent can store messages, track which tools are available, and report its current state (idle, streaming, etc.). No loop yet — just the data model and state management.
+A type-safe message system and an `Agent` class that manages conversation context, tools, and streaming state.
 
 ## Why This Matters
 
-Before you can build a loop, you need to understand what the loop operates on: **messages** and **state**. In pi.dev, messages are a union of LLM-compatible types (`user`, `assistant`, `toolResult`) plus custom application-specific message types. The Agent class owns this state and provides controlled access through getters/setters that copy arrays before exposing them (preventing accidental mutation).
+The `Agent` class is the heart of your harness. It owns the conversation, knows which tools are available, and decides when to stop looping. Without this layer, you're just making raw API calls — not building an agent.
 
-## Prerequisites for This Milestone
+---
 
-- Complete Milestone 1
-- Comfortable with TypeScript interfaces, unions, and generics
+[:material-arrow-left: Back to Course](../../README.md){: .md-button }&nbsp;&nbsp;[:material-book-open-variant: Read Context](context.md){: .md-button }&nbsp;&nbsp;[:material-check-circle: Start Building →](steps.md){: .md-button .md-button--primary }&nbsp;&nbsp;[:material-flag: Done Checklist](done.md){: .md-button }

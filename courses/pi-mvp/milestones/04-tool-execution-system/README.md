@@ -1,15 +1,17 @@
-# Milestone 4: Tool Execution System
+---
+comments: Milestone 4 of 5
+---
+
+# :fontawesome-solid-circle-4: Tool Execution System
 
 ## What You'll Build
 
-A tool registration and execution system that lets the agent call external functions (file reading, command execution, etc.) when the LLM requests it. Tools are registered with a name, description, parameter schema, and execute function. The loop validates arguments against the schema before calling `execute()`, then feeds results back to the model for the next turn.
+A tool registration and execution system with type-safe schemas. The agent will validate arguments, execute tools safely, and feed results back to the model.
 
 ## Why This Matters
 
-This is what transforms your agent from a chatbot into an *agent* — it can take actions in the world based on what it learns from the LLM. In pi.dev, tools include file reading/writing, shell command execution, git operations, and more. You'll build a minimal but extensible tool system that demonstrates the core pattern.
+This is what makes agents *agentic* — they don't just generate text, they take action in the world.
 
-## Prerequisites for This Milestone
+---
 
-- Complete Milestones 1–3
-- Comfortable with TypeScript generics (you used them in Milestone 2)
-- Understand JSON Schema basics (types, required fields, descriptions)
+[:material-arrow-left: Back to Course](../../README.md){: .md-button }&nbsp;&nbsp;[:material-book-open-variant: Read Context](context.md){: .md-button }&nbsp;&nbsp;[:material-check-circle: Start Building →](steps.md){: .md-button .md-button--primary }&nbsp;&nbsp;[:material-flag: Done Checklist](done.md){: .md-button }

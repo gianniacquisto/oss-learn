@@ -1,52 +1,136 @@
 site_name: oss-learn
 site_description: Curated courses that teach you how real-world OSS projects are built — by rebuilding them yourself, step by step.
 site_url: https://gianniacquisto.github.io/oss-learn
+site_author: Gianni Acquistò
+
+copyright: Built with <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>
 
 repo_url: https://github.com/earendil-works/oss-learn
-repo_name: gianniacquisto/oss-learn
+repo_name: earendil-works/oss-learn
+edit_uri: edit/main/courses/
 
 docs_dir: courses
 
+# ---------------------------------------------------------------------------
+# Theme — modern dark-first look with techy palette
+# ---------------------------------------------------------------------------
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
+
+  font:
+    text: "Inter"
+    code: "JetBrains Mono"
+
   palette:
-    primary: deep-purple
-    accent: indigo
+    # Auto-detect from system preference
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Dark (default when system prefers dark)
+    - media: "(prefers-color-scheme: dark)"
+      scheme: default
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+    # Light
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
   features:
     - navigation.instant
+    - navigation.instant.progress
     - navigation.tracking
-    - navigation.indexes
+    - navigation.expand          # keep nav sections open
+    - navigation.indexes         # allow landing pages for sections
+    - navigation.prune           # reduce nav tree size
+    - navigation.sections        # show section titles
+    - navigation.tabs            # top-level tabs
+    - navigation.tabs.sticky     # sticky on scroll
+    - navigation.top             # back-to-top button
     - search.suggest
     - search.highlight
+    - search.share               # shareable search links
     - content.code.copy
+    - content.action.edit
+    - toc.integrate              # TOC in sidebar, not separate column
+    - toc.follow
+
   icon:
     repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+    previous: material/chevron-left
+    next: material/chevron-right
 
+# ---------------------------------------------------------------------------
+# Navigation — flat, icon-rich, grouped by purpose
+# ---------------------------------------------------------------------------
 nav:
   - Home: index.md
-  - Courses:
-      - pi-mvp/README.md
-      - Milestones:
-        - Project Setup: pi-mvp/milestones/01-project-setup/context.md
-        - Message Types & State: pi-mvp/milestones/02-message-types-and-state/context.md
-        - Core Agent Loop: pi-mvp/milestones/03-core-agent-loop/context.md
-        - Tool Execution System: pi-mvp/milestones/04-tool-execution-system/context.md
-        - LLM Integration: pi-mvp/milestones/05-llm-integration/context.md
-      - Glossary: pi-mvp/glossary.md
-      - Key Concepts: pi-mvp/key-concepts.md
-      - Reading List: pi-mvp/reading-list.md
-  - Contributing: https://github.com/earendil-works/oss-learn/blob/main/CONTRIBUTING.md
+  - pi-mvp Course:
+      - Overview: pi-mvp/README.md
+      - Start Building →:
+          - "1. Project Setup": pi-mvp/milestones/01-project-setup/README.md
+          - "2. Message Types & State": pi-mvp/milestones/02-message-types-and-state/README.md
+          - "3. Core Agent Loop": pi-mvp/milestones/03-core-agent-loop/README.md
+          - "4. Tool Execution System": pi-mvp/milestones/04-tool-execution-system/README.md
+          - "5. LLM Integration": pi-mvp/milestones/05-llm-integration/README.md
+      - Resources:
+          - Key Concepts: pi-mvp/key-concepts.md
+          - Glossary: pi-mvp/glossary.md
+          - Reading List: pi-mvp/reading-list.md
+  - Contributing:
+      - Guide: https://github.com/earendil-works/oss-learn/blob/main/CONTRIBUTING.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/earendil-works/oss-learn
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/gianniacquisto
+
+# ---------------------------------------------------------------------------
+# Customization
+# ---------------------------------------------------------------------------
+extra_css:
+  - assets/overrides.css
 
 markdown_extensions:
   - attr_list
   - md_in_html
+  - admonition
+  - pymdownx.details
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
-  - search
+  - search:
+      lang: en
