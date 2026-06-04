@@ -1,47 +1,70 @@
-# Done Checklist — Milestone 4: Tool Execution
+# :material-flag: Done Checklist — Milestone 4: Tool Execution
 
 [:material-arrow-left: Back to Steps](steps.md){: .md-button }&nbsp;&nbsp;[:octicons-arrow-right-24: Next: Real LLM Calls →](../05-real-llm-calls/README.md){: .md-button .md-button--primary }
 
 ---
 
-If everything works, you should be able to do the following:
-
 ## Verification Steps
 
-1. Run `npm run build` and see **no TypeScript errors**
-2. Verify that `hasToolCalls()` correctly identifies messages with tool calls
-3. Verify that `validateToolArguments()` returns `true` for valid args and an error message for missing fields
-4. Verify that `executeToolCall()` catches errors and returns `{ isError: true }`
-5. Register the `read_file` tool and verify it appears in `agent.state.tools`
+1. **Compile:** Run `npm run build` and see **no TypeScript errors**
+2. **Test tool detection:** Verify `hasToolCalls()` returns `true` for a message with `ToolCallBlock` content and `false` for a text-only message
+3. **Test validation:** Call `validateToolArguments("read_file", {}, ["path"])` — it should return an error string about the missing "path" field
+4. **Test execution end-to-end:** Run `AGENT_API_KEY=fake npm start` with a prompt like `"Read the package.json file"` and verify:
+   - The mock LLM returns a tool call for `read_file`
+   - Your code executes the tool and reads `package.json`
+   - A `ToolResultMessage` is appended to the conversation
+   - The loop continues (second turn) and gives a final answer
+5. **Test error handling:** Register the tool, then make the mock return a call for a non-existent tool name — verify it produces an "Unknown tool" error result instead of crashing
+
+---
 
 ## What Should Work
 
-- Tool calls are correctly detected in assistant messages (content blocks with `type === "toolCall"`)
-- Arguments are validated against required fields before execution
-- Failed validation produces a clear error message
-- Successful tool execution returns content that gets formatted into a `ToolResultMessage`
-- Tool result messages are appended to context
-- The loop continues after tool execution (multi-turn flow works)
-- Events include `message_start`/`message_end` for each tool result
+??? success "Expected behavior"
+    - `ToolCallBlock` is part of the `AssistantMessage.content` union type
+    - `agent.registerTool(readFileTool)` adds the tool to `agent.state.tools`
+    - Tool calls in assistant messages are detected by `hasToolCalls()` and extracted by `getToolCalls()`
+    - Arguments are validated — missing required fields produce clear error messages
+    - Successful tool execution returns content formatted as a `ToolResultMessage`
+    - Failed tool execution returns `{ isError: true }` with a descriptive error message
+    - The loop continues after tool execution (multi-turn: tool call → result → LLM again → final answer)
+    - Events include `message_start`/`message_end` for each tool result
 
 ## What Should NOT Work (Yet)
 
-- Real LLM calls — still using a mock response (that comes in Milestone 5)
-- Parallel tool execution — tools execute sequentially
-- Tool call ID generation — for now, use a simple counter or `crypto.randomUUID()`
-- Multiple tools — you only have `read_file`, add more as you like
+??? failure "Not expected yet"
+    - Real LLM calls — still using a mock response (that comes in Milestone 5)
+    - Parallel tool execution — tools run one at a time, not simultaneously
+    - Multiple tools beyond `read_file` — you have the infrastructure, but only one concrete tool
+    - Streaming responses — the entire response arrives at once, not token by token
 
-## If Something Is Broken
+## Troubleshooting
 
-### "The loop doesn't continue after executing tools"
-- Check that after processing all tool calls, you're calling back into the LLM with the updated context (messages array now includes tool results). The `continue` statement in the while loop should handle this.
+??? bug "The loop doesn't continue after executing tools"
+    Check that after processing all tool calls, your code calls `continue` (not `break`). The `continue` sends execution back to the top of `while(true)` for another LLM call. If you used `break`, the loop exits after tool execution and never calls the LLM again with the results.
 
-### "TypeScript complains about ToolCallBlock"
-- Make sure you added `ToolCallBlock` to the `AssistantMessage.content` union type. The content should be `(TextContent | ToolCallBlock)[]`.
+??? bug "TypeScript complains about ToolCallBlock in content access"
+    After adding `ToolCallBlock` to `AssistantMessage.content`, any code that accesses `content[i].text` directly will error because the item might be a tool call block. Fix by checking the type first:
+    ```typescript
+    // ❌ Before: assumed all content is TextContent
+    message.content.map(c => c.text)
 
-### "Tool execution throws an unhandled error"
-- Check that your try/catch in `executeToolCall` wraps the actual tool call. If a tool throws before returning, it should be caught and converted to `{ isError: true }`.
+    // ✅ After: filter for text blocks only
+    message.content.filter(c => c.type === "text").map(c => c.text)
+    ```
 
-### "read_file tool can't find the file"
-- Make sure you're running the CLI from the right directory. The `path` argument is relative to the current working directory.
-- Try using an absolute path like `/home/youruser/README.md` for testing.
+??? bug "Tool execution throws an unhandled error"
+    Check that `executeToolCall` wraps `tool.execute()` in a try/catch. If a tool throws (file not found, permission denied), the error should be caught and returned as `{ isError: true }`, not rethrown:
+    ```typescript
+    async function executeToolCall(...) {
+      try {
+        return await tool.execute(toolCallId, args);
+      } catch (error) {
+        // ← must catch here
+        return { content: [{ type: "text", text: `Error: ${message}` }], isError: true };
+      }
+    }
+    ```
+
+??? bug "read_file tool can't find the file"
+    The path argument is relative to the **current working directory** (where you run `npm start`). If you're in `my-agent/` and the mock passes `"package.json"`, it reads `my-agent/package.json`. Try an absolute path for testing: `"/home/youruser/my-agent/package.json"`.

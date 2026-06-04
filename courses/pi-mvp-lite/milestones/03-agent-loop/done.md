@@ -1,45 +1,74 @@
-# Done Checklist — Milestone 3: The Agent Loop
+# :material-flag: Done Checklist — Milestone 3: The Agent Loop
 
 [:material-arrow-left: Back to Steps](steps.md){: .md-button }&nbsp;&nbsp;[:octicons-arrow-right-24: Next: Tool Execution →](../04-tool-execution/README.md){: .md-button .md-button--primary }
 
 ---
 
-If everything works, you should be able to do the following:
-
 ## Verification Steps
 
-1. Run `npm run build` and see **no TypeScript errors**
-2. Run `npm start` and verify it prints event logs in this order:
-   - `[Agent started]`
-   - `[Turn started]`
-   - `[Message started]`
-   - The mock response text
-   - `[Message ended]`
-   - `[Turn ended]`
-   - `[Agent finished]`
-3. Verify that after `prompt()` completes, `agent.state.isStreaming` is `false` and `agent.state.messages` contains both your user message and the assistant response
-4. Test the guard: call `prompt()` twice in quick succession without awaiting — verify it throws "Agent is already processing" on the second call
+1. **Compile:** Run `npm run build` and see **no TypeScript errors**
+2. **Run:** Execute `AGENT_API_KEY=fake npm start` and verify it prints events in this exact order:
+   ```
+   [Agent started]
+     [Turn started]
+       [Message generation started]
+       (mock response text)
+       [Message generation ended]
+     [Turn ended]
+   [Agent finished — total messages: 2 ]
+   ```
+3. **Check state:** After completion, `agent.state.isStreaming` should be `false` and `agent.state.messages` should contain exactly 2 messages (1 user + 1 assistant)
+4. **Test the guard:** Temporarily modify your CLI to call `agent.prompt()` twice without awaiting the first — verify it throws `"Agent is already processing a prompt."` on the second call
+
+---
 
 ## What Should Work
 
-- The loop emits all events in the correct order for a single-turn run
-- Events contain the right data (message content, etc.)
-- `agent.state.messages` has exactly 2 messages after one prompt: user + assistant
-- The mock response is correctly converted into an `AssistantMessage` with proper fields
+??? success "Expected behavior"
+    - The loop emits all seven event types in the correct order for a single-turn run
+    - Events contain the right data (message content in `message_update`, full transcript in `agent_end`)
+    - `agent.state.messages` grows from 0 → 1 (user message) → 2 (assistant response) after one prompt
+    - The mock response echoes back the user's input
+    - `agent.state.isStreaming` is `false` after `prompt()` resolves (even if an error occurred)
+    - Calling `prompt()` while the agent is busy throws a clear error
 
 ## What Should NOT Work (Yet)
 
-- Multi-turn conversations with tool calls — the loop exits after one turn (tools come in Milestone 4)
-- Real LLM API calls — still using a mock response
-- Streaming responses — you're getting the full response at once
+??? failure "Not expected yet"
+    - Multi-turn conversations — the loop exits after one turn (tools trigger multi-turn in Milestone 4)
+    - Tool call detection and execution — no tool infrastructure in the loop yet
+    - Real LLM API calls — still using `mockLLMCall()` (replaced in Milestone 5)
+    - Streaming text — you get the full response at once, not token-by-token
 
-## If Something Is Broken
+## Troubleshooting
 
-### "Events aren't emitted in order"
-- Make sure you're awaiting each `onEvent()` call. If you don't await it, events might fire out of order.
+??? bug "Events aren't emitted in the expected order"
+    Make sure every `onEvent()` call is awaited (or at least called in sequence). The mock LLM is fast but still async — if events fire out of order, check that you're calling `onEvent()` for each event type in the loop body in the correct sequence.
 
-### "agent.state.isStreaming stays true after prompt() completes"
-- Check your try/finally block in the `prompt()` method. The finally block must set `isStreaming = false` regardless of whether runLoop succeeded or threw an error.
+??? bug "agent.state.isStreaming stays true after prompt() completes"
+    Check your `try/finally` block in the `prompt()` method. The `finally` block must set `isStreaming = false` regardless of whether `runLoop` succeeded or threw:
+    ```typescript
+    this._state.isStreaming = true;
+    try {
+      await runLoop(...);
+    } finally {
+      this._state.isStreaming = false;  // ← must be here, not in try or catch
+    }
+    ```
 
-### "TypeScript complains about the mockLLMCall function"
-- Make sure the function returns an `AssistantMessage` with all required fields: `role`, `content`, `model`, `provider`, `stopReason`, and `timestamp`.
+??? bug "TypeScript complains about the mockLLMCall function's return type"
+    Make sure `mockLLMCall` returns an `AssistantMessage` with **all required fields**:
+    - `role: "assistant"`
+    - `content: TextContent[]` (array, not string)
+    - `model: string`
+    - `provider: string`
+    - `stopReason: "stop" | "toolCalls" | "error" | "aborted"`
+    - `timestamp: number`
+
+??? bug "The concurrency guard doesn't fire on double prompt() calls"
+    Make sure you're calling both prompts without awaiting the first:
+    ```typescript
+    agent.prompt("first");  // no await — starts processing
+    agent.prompt("second"); // should throw because isStreaming is true
+    ```
+    If you `await` the first call, the second one runs after the first completes, so `isStreaming` is already `false`.
