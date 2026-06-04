@@ -4,7 +4,7 @@
 
 The agent loop is the central control flow of any agentic system. At its simplest, it looks like this:
 
-```
+```javascript
 while (hasMoreWork) {
   response = callLLM(context);
   if (response.hasToolCalls()) {

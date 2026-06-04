@@ -98,7 +98,7 @@ Create these directories and files under `src/`:
     - Create a `.gitignore` that excludes `node_modules/`, `dist/`, and `.env`.
 
 ??? example "Project structure"
-    ```
+    ```text
     src/
     ├── cli.ts      # Entry point — parses args, loads config, runs agent
     ├── config.ts   # Config types + loading logic

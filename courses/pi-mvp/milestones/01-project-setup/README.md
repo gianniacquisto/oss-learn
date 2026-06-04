@@ -15,7 +15,7 @@ Before writing any agent logic, you need to decide on your project structure, de
 ## Prerequisites
 
 - :material-nodejs: Node.js 18+ installed
-- :fontawesome-solid-box-open: npm or pnpm available  
+- :fontawesome-solid-box-open: npm or pnpm available
 - :material-pencil-ruler: A text editor (VS Code recommended)
 
 ---

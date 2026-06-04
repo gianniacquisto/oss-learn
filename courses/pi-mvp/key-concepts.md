@@ -21,7 +21,7 @@ These are the architectural patterns and design decisions that make an agent har
 
 You'll build this in **Milestone 3** (core loop) and refine it through Milestone 4 (tool execution). The key insight: the loop has two layers — an outer layer that handles multi-turn follow-ups, and an inner layer that processes tool calls from a single assistant response.
 
-```
+```text
 ┌─────────────────────────────────┐
 │   Outer Loop (multi-turn)       │
 │  ┌────────────────────────────┐ │
