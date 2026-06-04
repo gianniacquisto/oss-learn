@@ -24,14 +24,17 @@ theme:
     code: "JetBrains Mono"
 
   palette:
-    # Auto-detect from system preference
+    # Auto-detect from system preference (defaults to dark)
     - media: "(prefers-color-scheme)"
+      scheme: slate
+      primary: black
+      accent: cyan
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
-    # Dark (default when system prefers dark)
+    # Dark
     - media: "(prefers-color-scheme: dark)"
-      scheme: default
+      scheme: slate
       primary: black
       accent: cyan
       toggle:
@@ -39,12 +42,12 @@ theme:
         name: Switch to light mode
     # Light
     - media: "(prefers-color-scheme: light)"
-      scheme: slate
+      scheme: default
       primary: black
       accent: cyan
       toggle:
         icon: material/brightness-4
-        name: Switch to system preference
+        name: Switch to dark mode
 
   features:
     - navigation.instant
@@ -90,12 +93,12 @@ nav:
           - Glossary: pi-mvp/glossary.md
           - Reading List: pi-mvp/reading-list.md
   - Contributing:
-      - Guide: https://github.com/earendil-works/oss-learn/blob/main/CONTRIBUTING.md
+      - Guide: https://github.com/gianniacquisto/oss-learn/blob/main/CONTRIBUTING.md
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/earendil-works/oss-learn
+      link: https://github.com/gianniacquisto/oss-learn
     - icon: fontawesome/brands/x-twitter
       link: https://x.com/gianniacquisto
 

@@ -1,5 +1,9 @@
 # Done Checklist — Milestone 4: Tool Execution System
 
+[:material-arrow-left: Back to Steps](steps.md){: .md-button }&nbsp;&nbsp;[:octicons-arrow-right-24: Next: LLM Integration →](../05-llm-integration/README.md){: .md-button .md-button--primary }
+
+---
+
 If everything works, you should be able to do the following:
 
 ## Verification Steps

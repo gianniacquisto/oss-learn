@@ -1,5 +1,9 @@
 # Done Checklist — Milestone 2: Message Types & Agent State
 
+[:material-arrow-left: Back to Steps](steps.md){: .md-button }&nbsp;&nbsp;[:octicons-arrow-right-24: Next: Core Agent Loop →](../03-core-agent-loop/README.md){: .md-button .md-button--primary }
+
+---
+
 If everything works, you should be able to do the following:
 
 ## Verification Steps

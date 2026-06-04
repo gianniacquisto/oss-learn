@@ -1,5 +1,9 @@
 # Done Checklist — Milestone 3: Core Agent Loop
 
+[:material-arrow-left: Back to Steps](steps.md){: .md-button }&nbsp;&nbsp;[:octicons-arrow-right-24: Next: Tool Execution System →](../04-tool-execution-system/README.md){: .md-button .md-button--primary }
+
+---
+
 If everything works, you should be able to do the following:
 
 ## Verification Steps

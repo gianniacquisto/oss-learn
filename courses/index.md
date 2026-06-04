@@ -51,4 +51,4 @@ Build your own minimal agent harness — the core engine that powers [pi.dev](ht
 
 ## Want to contribute?
 
-See [CONTRIBUTING.md](https://github.com/earendil-works/oss-learn/blob/main/CONTRIBUTING.md) for the methodology and structure guidelines.
+See [CONTRIBUTING.md](https://github.com/gianniacquisto/oss-learn/blob/main/CONTRIBUTING.md) for the methodology and structure guidelines.

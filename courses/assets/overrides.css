@@ -326,7 +326,7 @@ h2 {
   padding: 0.5em 1em;
 }
 
-.md-typeset .tabbed-set>label.tabbed-label=> {
+.md-typeset .tabbed-set>label.tabbed-label--active {
   background-color: rgba(0, 229, 255, 0.06);
   color: var(--md-accent-fg-color);
 }

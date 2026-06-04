@@ -1,5 +1,9 @@
 # Done Checklist — Milestone 5: LLM Integration & Streaming
 
+[:material-arrow-left: Back to Steps](steps.md){: .md-button }&nbsp;&nbsp;[:material-home: Back to Course Overview](../../README.md){: .md-button .md-button--primary }
+
+---
+
 If everything works, you should be able to do the following:
 
 ## Verification Steps
