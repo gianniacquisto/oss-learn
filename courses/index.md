@@ -19,6 +19,16 @@ Each course takes a real project (like [pi.dev](https://github.com/earendil-work
 
 ::: {.grid }
 
+[:fontawesome-solid-robot:{ .lg .middle } :octicons-rocket-16:{ .lg .middle } pi-mvp-lite](pi-mvp-lite/README.md){: .card }
+
+---
+
+Build a minimal agent harness that can talk to an LLM, use tools, and have a real conversation. A beginner-friendly introduction to AI agent architecture.
+
+**Difficulty:** Beginner &nbsp;|&nbsp; **Time:** ~6–8 hours
+
+---
+
 [:fontawesome-solid-robot:{ .lg .middle } :octicons-rocket-16:{ .lg .middle } pi-mvp](pi-mvp/README.md){: .card }
 
 ---

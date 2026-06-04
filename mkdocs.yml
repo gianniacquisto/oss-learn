@@ -80,6 +80,16 @@ nav:
   - Home: index.md
   - Courses:
       - Overview: courses/index.md
+      - pi-mvp-lite:
+          - Overview: pi-mvp-lite/README.md
+          - "1. Setup & Hello Agent": pi-mvp-lite/milestones/01-setup-and-cli/README.md
+          - "2. Messages & Agent State": pi-mvp-lite/milestones/02-messages-and-agent/README.md
+          - "3. The Agent Loop": pi-mvp-lite/milestones/03-agent-loop/README.md
+          - "4. Tool Execution": pi-mvp-lite/milestones/04-tool-execution/README.md
+          - "5. Real LLM Calls": pi-mvp-lite/milestones/05-real-llm-calls/README.md
+          - Key Concepts: pi-mvp-lite/key-concepts.md
+          - Glossary: pi-mvp-lite/glossary.md
+          - Reading List: pi-mvp-lite/reading-list.md
       - pi-mvp:
           - Overview: pi-mvp/README.md
           - "1. Project Setup": pi-mvp/milestones/01-project-setup/README.md
