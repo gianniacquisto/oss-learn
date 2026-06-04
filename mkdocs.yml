@@ -54,8 +54,6 @@ theme:
     - navigation.instant.progress
     - navigation.tracking
     - navigation.expand          # keep nav sections open
-    - navigation.indexes         # allow landing pages for sections
-    - navigation.prune           # reduce nav tree size
     - navigation.sections        # show section titles
     - navigation.tabs            # top-level tabs
     - navigation.tabs.sticky     # sticky on scroll
@@ -80,18 +78,15 @@ theme:
 # ---------------------------------------------------------------------------
 nav:
   - Home: index.md
-  - pi-mvp Course:
-      - Overview: pi-mvp/README.md
-      - Start Building →:
-          - "1. Project Setup": pi-mvp/milestones/01-project-setup/README.md
-          - "2. Message Types & State": pi-mvp/milestones/02-message-types-and-state/README.md
-          - "3. Core Agent Loop": pi-mvp/milestones/03-core-agent-loop/README.md
-          - "4. Tool Execution System": pi-mvp/milestones/04-tool-execution-system/README.md
-          - "5. LLM Integration": pi-mvp/milestones/05-llm-integration/README.md
-      - Resources:
-          - Key Concepts: pi-mvp/key-concepts.md
-          - Glossary: pi-mvp/glossary.md
-          - Reading List: pi-mvp/reading-list.md
+  - "pi-mvp Overview": pi-mvp/README.md
+  - "1. Project Setup": pi-mvp/milestones/01-project-setup/README.md
+  - "2. Message Types & State": pi-mvp/milestones/02-message-types-and-state/README.md
+  - "3. Core Agent Loop": pi-mvp/milestones/03-core-agent-loop/README.md
+  - "4. Tool Execution System": pi-mvp/milestones/04-tool-execution-system/README.md
+  - "5. LLM Integration": pi-mvp/milestones/05-llm-integration/README.md
+  - Key Concepts: pi-mvp/key-concepts.md
+  - Glossary: pi-mvp/glossary.md
+  - Reading List: pi-mvp/reading-list.md
   - Contributing:
       - Guide: https://github.com/gianniacquisto/oss-learn/blob/main/CONTRIBUTING.md
 

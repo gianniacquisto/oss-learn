@@ -2,7 +2,7 @@
 comments: Milestone 3 of 5
 ---
 
-# :fontawesome-solid-circle-3: Core Agent Loop
+# ③ Core Agent Loop
 
 ## What You'll Build
 

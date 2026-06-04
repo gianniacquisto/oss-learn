@@ -2,7 +2,7 @@
 comments: Milestone 2 of 5
 ---
 
-# :fontawesome-solid-circle-2: Message Types & Agent State
+# ② Message Types & Agent State
 
 ## What You'll Build
 

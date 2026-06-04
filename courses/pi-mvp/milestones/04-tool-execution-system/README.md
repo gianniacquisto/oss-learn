@@ -2,7 +2,7 @@
 comments: Milestone 4 of 5
 ---
 
-# :fontawesome-solid-circle-4: Tool Execution System
+# ④ Tool Execution System
 
 ## What You'll Build
 

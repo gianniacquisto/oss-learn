@@ -2,7 +2,7 @@
 comments: Milestone 1 of 5
 ---
 
-# :fontawesome-solid-circle-1: Project Setup & Configuration
+# ① Project Setup & Configuration
 
 ## What You'll Build
 

@@ -2,7 +2,7 @@
 comments: Milestone 5 of 5
 ---
 
-# :fontawesome-solid-circle-5: LLM Integration & Streaming
+# ⑤ LLM Integration & Streaming
 
 ## What You'll Build
 
