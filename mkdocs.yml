@@ -1,9 +1,9 @@
 site_name: oss-learn
 site_description: Curated courses that teach you how real-world OSS projects are built — by rebuilding them yourself, step by step.
-site_url: https://earendil-works.github.io/oss-learn
+site_url: https://gianniacquisto.github.io/oss-learn
 
 repo_url: https://github.com/earendil-works/oss-learn
-repo_name: earendil-works/oss-learn
+repo_name: gianniacquisto/oss-learn
 
 docs_dir: courses
 

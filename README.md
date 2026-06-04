@@ -1,6 +1,6 @@
 # oss-learn
 
-[![Deployed on GitHub Pages](https://img.shields.io/badge/deployed-GitHub_Pages-blue?logo=github)](https://earendil-works.github.io/oss-learn)
+[![Deployed on GitHub Pages](https://img.shields.io/badge/deployed-GitHub_Pages-blue?logo=github)](https://gianniacquisto.github.io/oss-learn)
 
 Curated courses that teach you how real-world OSS projects are built — by rebuilding them yourself, step by step.
 
