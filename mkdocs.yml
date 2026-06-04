@@ -94,8 +94,6 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/gianniacquisto/oss-learn
-    - icon: fontawesome/brands/x-twitter
-      link: https://x.com/gianniacquisto
 
 # ---------------------------------------------------------------------------
 # Customization
